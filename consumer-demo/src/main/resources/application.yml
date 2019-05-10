@@ -1,0 +1,32 @@
+server:
+  port: 8088
+spring:
+  application:
+    name: consumer-service
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:10088/eureka,http://127.0.0.1:10087/eureka
+    fetch-registry: true #是否拉取
+    registry-fetch-interval-seconds: 30  #拉取间隔
+  instance:
+    prefer-ip-address: true
+    ip-address: 127.0.0.1
+#配置负载均衡
+user-service:
+  ribbon:
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
+ribbon:
+  ConnectionTimeOut: 500
+  ReadTimeOut: 2000
+feign:
+  hystrix:
+    enabled: true
+#配置Hystric
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 3000

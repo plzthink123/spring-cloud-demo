@@ -1,0 +1,14 @@
+server:
+  port: 10010
+eurka:
+  client:
+    service-url:
+      defaultZone: http://172.0.0.1:10086/eureka
+zuul:
+  routes:
+    #hehe:
+      #path: /user-service/**
+      #url: http://127.0.0.1:8081
+      #serviceId: user-service
+    user-service: /user-service/**
+
